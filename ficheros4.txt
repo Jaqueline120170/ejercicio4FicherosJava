@@ -1,3 +1,0 @@
-hola jaqui
-Este es un ejemplo de escritura en un archivo utilizando Java.
-soy paco
