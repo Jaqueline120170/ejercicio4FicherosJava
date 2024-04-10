@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Inicioo {
 	static Scanner sc = new Scanner(System.in);
-	static String rutaArchivo = "C:\\Users\\Usuario\\eclipse-workspace\\ejercicio4FicherosJava\\" + "ficheros4.txt";
+	static String rutaArchivo = "C:\\Users\\Usuario\\eclipse-workspace\\ejercicio4FicherosJava\\" + "ficheros4.csv";
 
 	public static void main(String[] args) {
 		textoInicial();
