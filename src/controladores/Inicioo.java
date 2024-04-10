@@ -10,10 +10,14 @@ import java.util.Scanner;
 
 public class Inicioo {
 	static Scanner sc = new Scanner(System.in);
-	static String rutaArchivo = "C:\\\\Users\\\\Profesor\\\\eclipse-workspace\\\\ejercicio4FicherosJava\\" + "ficheros4.txt";
+	static String rutaArchivo = "C:\\Users\\Usuario\\eclipse-workspace\\ejercicio4FicherosJava\\" + "ficheros4.txt";
 
 	public static void main(String[] args) {
-		//////////////////////////////////////////////
+		textoInicial();
+		lineaYposicion();
+
+	}
+	public static void textoInicial() {
 		try {
 			FileWriter escritor = new FileWriter(rutaArchivo);
 
@@ -32,50 +36,51 @@ public class Inicioo {
 			// Cerrar el FileWriter
 			escritorNuevo.close();
 			
-			lineaYposicion();
 
 		} catch (IOException e) {
 			System.out.println("Ocurrió un error al escribir en el archivo: " + e.getMessage());
 			e.printStackTrace();
 		}
-
 	}
-
 	public static void lineaYposicion() {
 
-		try {
-			System.out.println("Indique la linea que desea modificar");
+		System.out.println("Indique la linea que desea modificar");
 			int numeroDeLinea = sc.nextInt();
-			System.out.println("Indique la posicion que desea modificar");
-			int posicionDeInicio = sc.nextInt();
-			System.out.println("Indique el texto que desea añadir");
-			String textoAInsertar = sc.nextLine();
-			
-			BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo));
-			StringBuilder nuevo = new StringBuilder();
-			String lineaActual;
-			int contador = 0;
-			while ((lineaActual = lector.readLine()) != null) {
-				contador++;
-				if (contador == numeroDeLinea) {
-					// Modificar la línea deseada
-					nuevo.append(lineaActual.substring(0, posicionDeInicio)).append(textoAInsertar)
-							.append(lineaActual.substring(posicionDeInicio));
-				} else {
-					nuevo.append(lineaActual);
-				}
-				nuevo.append(System.lineSeparator());
-			}
-			lector.close();
-			BufferedWriter escritor2 = new BufferedWriter(new FileWriter(rutaArchivo));
-			escritor2.write(nuevo.toString());
-			escritor2.close();
-		}
-		catch (IOException e) {
-			System.out.println("Ocurrió un error al escribir en el archivo: " + e.getMessage());
-			e.printStackTrace();
-		}
-		
+    	 System.out.println("Introduce la posicion en la que deseas añadir el texto");
+         int posicionDeInicio =sc.nextInt();
+         System.out.println("Introduce el texto que deseas añadir");
+         String textoAInsertar = sc.next();
+
+         try {
+             // Leer el archivo línea por línea y guardar cada línea en un StringBuilder
+             BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo));
+             StringBuilder contenido = new StringBuilder();
+             String lineaActual;
+             int contador = 0;
+             while ((lineaActual = lector.readLine()) != null) {
+                 contador++;
+                 if (contador == numeroDeLinea) {
+                     // Modificar la línea deseada
+                     contenido.append(lineaActual.substring(0, posicionDeInicio)).append(textoAInsertar)
+                             .append(lineaActual.substring(posicionDeInicio));
+                 } else {
+                     contenido.append(lineaActual);
+                 }
+                 contenido.append(System.lineSeparator());
+             }
+             lector.close();
+
+             // Escribir el contenido modificado en el archivo
+             BufferedWriter escritor = new BufferedWriter(new FileWriter(rutaArchivo));
+             escritor.write(contenido.toString());
+             escritor.close();
+
+             System.out.println("Se ha escrito en la posición específica de la línea exitosamente.");
+         } catch (IOException e) {
+             System.out.println("Ocurrió un error al escribir en el archivo: " + e.getMessage());
+             e.printStackTrace();
+         }
+}
 	}
 
-}
+

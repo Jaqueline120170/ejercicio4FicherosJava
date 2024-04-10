@@ -1,0 +1,3 @@
+hola como estas
+Este es un ejemplo de escritura en un archivo utilizando Java.
+holahola de nuevo
